@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Popular Movie</string>
     <string name="action_settings">Settings</string>
+    <string name="movie_db_key">d5b2b84b8d4fe4b3c286858434aa8b6d</string>
+    <string name="movie_db_url">http://api.themoviedb.org/3/discover/movie?</string>
+    <string name="movie_db_picURL"></string>
 </resources>
