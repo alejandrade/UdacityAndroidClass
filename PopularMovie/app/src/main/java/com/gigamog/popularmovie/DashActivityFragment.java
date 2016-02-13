@@ -1,18 +1,23 @@
 package com.gigamog.popularmovie;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.gigamog.popularmovie.beans.PosterImageItem;
 import com.gigamog.popularmovie.com.gigamog.popularmovie.adapter.CustomGridViewAdapter;
+import com.gigamog.popularmovie.com.gigamog.popularmovie.constant.PersonalIntent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +38,8 @@ public class DashActivityFragment extends Fragment {
     private final String LOG_TAG = DashActivityFragment.class.getSimpleName();
     CustomGridViewAdapter movieAdapter;
     ArrayList<PosterImageItem> posterImageItem;
+    Integer page = 1;
+    boolean filled = false;
     public DashActivityFragment() {
     }
 
@@ -45,11 +52,26 @@ public class DashActivityFragment extends Fragment {
 //            posterImageItem.add(item);
 //        }
 
-        FetchMovieTask fetch = new FetchMovieTask();
-        fetch.execute("1","popularity.asc");
+
 
     }
 
+    private void updateMovieList(String page){
+        FetchMovieTask fetch = new FetchMovieTask();
+        String defaultValueSortOrder = getResources().getString(R.string.settingsSortOrderDefault);
+        String sortOrderKey = getResources().getString(R.string.settingsSortOrderKey);
+        String sortOrder = PreferenceManager.getDefaultSharedPreferences(getContext()).getString(sortOrderKey, defaultValueSortOrder);
+        Log.v("sort Order", sortOrder);
+        fetch.execute(page, sortOrder);
+    }
+
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        movieAdapter.clear();
+        updateMovieList(page.toString());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,11 +81,41 @@ public class DashActivityFragment extends Fragment {
         Context activityConext = getActivity();
 
         movieAdapter = new CustomGridViewAdapter(activityConext, R.layout.movie_poster, posterImageItem);
-        GridView grid = (GridView) root.findViewById(R.id.posterGridView);
+        final GridView grid = (GridView) root.findViewById(R.id.posterGridView);
         grid.setAdapter(movieAdapter);
+
+        grid.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+
+                if (movieAdapter.getFillME()) {
+                    page++;
+                    updateMovieList(page.toString());
+                    movieAdapter.setFillME(false);
+                }
+
+            }
+        });
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Intent details = new Intent(getActivity(), MovieDetails.class);
+                details.putExtra(PersonalIntent.getMOVIEDETAIL(), posterImageItem.get(position));
+                startActivity(details);
+            }
+        });
 
         return root;
     }
+
+
+
+
+
+
+
     public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<PosterImageItem>> {
         private final String LOG_TAG = FetchMovieTask.class.getSimpleName();
         @Override
@@ -175,9 +227,15 @@ public class DashActivityFragment extends Fragment {
                         currentJsonNode.getString(RELEASE_DATE));
                 posterImageItem.add(item);
             }
-            movieAdapter.addAll(posterImageItem);
+
             return posterImageItem;
 
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<PosterImageItem> list) {
+            super.onPostExecute(list);
+            movieAdapter.addAll(list);
         }
 
 

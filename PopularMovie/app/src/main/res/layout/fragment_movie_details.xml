@@ -1,0 +1,127 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MovieDetailsFragment"
+    tools:showIn="@layout/activity_movie_details"
+    android:orientation="vertical">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/labelTitle"
+            android:textStyle="bold"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:gravity="center_horizontal" />
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:adjustViewBounds="true" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/labelOriginalTitle"
+                android:id="@+id/labelOriginalTitle"
+
+                android:paddingBottom="25dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Medium Text"
+                android:id="@+id/textOriginalTitle"
+
+                android:layout_column="1"
+                android:lines="2"
+                android:paddingEnd="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/labelRating"
+                android:id="@+id/labelRating"
+                android:paddingBottom="25dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Medium Text"
+                android:id="@+id/textRating"
+
+                android:layout_column="1"
+                android:lines="2"
+                android:paddingEnd="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/labelReleas"
+                android:id="@+id/labelRelease"
+
+                android:paddingBottom="25dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Medium Text"
+                android:id="@+id/textRelease"
+
+                android:lines="2"
+                android:paddingEnd="20dp" />
+        </TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/labelSynposis"
+            android:id="@+id/labelSynopsis"
+            android:paddingBottom="0dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textSynopsis"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:lines="2" />
+    </TableLayout>
+
+
+</ScrollView>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<string-array name="sortOrderLabels">
+    <item>Highest to lowest average rating</item>
+    <item>lowest to highest average rating</item>
+    <item>Most to least popular</item>
+    <item>Least to most popular</item>
+</string-array>
+
+<string-array name="sortOrderValues">
+    <item>vote_average.desc</item>
+    <item>vote_average.asc</item>
+    <item>popularity.desc</item>
+    <item>popularity.asc</item>
+</string-array>
+
+
+</resources>

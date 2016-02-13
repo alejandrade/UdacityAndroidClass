@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name">Popular Movie</string>
     <string name="action_settings">Settings</string>
-    <string name="movie_db_key">d5b2b84b8d4fe4b3c286858434aa8b6d</string>
-    <string name="movie_db_url">http://api.themoviedb.org/3/discover/movie?</string>
+    <string name="movie_db_key" translatable="false">d5b2b84b8d4fe4b3c286858434aa8b6d</string>
+    <string name="movie_db_url" translatable="false">http://api.themoviedb.org/3/discover/movie?</string>
     <string name="movie_db_picURL"></string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="settingsSortOrderKey" translatable="false">sortOrder</string>
+    <string name="settingsSortOrderTitle">Sort By...</string>
+    <string name="settingsSortOrderDefault" translatable="false">vote_average.desc</string>
+    <string name="title_activity_movie_details">MovieDetails</string>
+
+
+    <!-- Strings for movie detail view -->
+    <string name="labelSynposis">Synopsis:</string>
+    <string name="labelRating">User Rating:</string>
+    <string name="labelOriginalTitle">Original Title:</string>
+    <string name="labelReleas">Release:</string>
+
 </resources>

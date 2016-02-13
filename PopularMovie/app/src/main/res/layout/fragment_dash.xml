@@ -13,6 +13,8 @@
         android:layout_gravity="center_horizontal|top"
         android:numColumns="auto_fit"
         android:choiceMode="singleChoice"
-        android:clickable="true" />
+        android:clickable="true"
+        android:scrollingCache="true"
+        android:smoothScrollbar="true" />
 
 </RelativeLayout>
